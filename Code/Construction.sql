@@ -1,3 +1,4 @@
+drop table if exists bridge_condition;
 create table bridge_condtion
 (
     STATE_CODE_001 VARCHAR(50),
@@ -38,6 +39,7 @@ select
     BRIDGE_IMP_COST_094
 from rawdata;
 
+drop table if exists condition_rating;
 create table condition_rating
 (
     RATING_CODE VARCHAR(2),
@@ -49,6 +51,7 @@ into table condition_rating
 fields terminated by ','  optionally enclosed by '"' escaped by '"'   
 lines terminated by '\r\n';  
 
+drop table if exists record_type;
 create table record_type
 (
 	RECORD_TYPE VARCHAR(2),
@@ -60,6 +63,7 @@ into table record_type
 fields terminated by ','  optionally enclosed by '"' escaped by '"'   
 lines terminated by '\r\n'; 
 
+drop table if exists channel_rating;
 create table channel_rating
 (
 	RATING_CODE VARCHAR(2),
@@ -71,6 +75,7 @@ into table channel_rating
 fields terminated by ','  optionally enclosed by '"' escaped by '"'   
 lines terminated by '\r\n'; 
 
+drop table if exists culvert_rating;
 create table culvert_rating
 (
 	RATING_CODE VARCHAR(2),
@@ -82,6 +87,7 @@ into table culvert_rating
 fields terminated by ','  optionally enclosed by '"' escaped by '"'   
 lines terminated by '\r\n'; 
 
+drop table if exists bridge_structure;
 create table bridge_structure
 (
 	STATE_CODE_001 VARCHAR(50),
@@ -149,6 +155,7 @@ select
     DECK_PROTECTION_108C
 from rawdata;
 
+drop table if exists structure_kind;
 create table structure_kind
 (
 	STRUCTURE_KIND VARCHAR(2),
@@ -160,6 +167,7 @@ into table structure_kind
 fields terminated by ','  optionally enclosed by '"' escaped by '"'   
 lines terminated by '\r\n'; 
 
+drop table if exists bridge_madian;
 create table bridge_median
 (
 	MEDIAN_CODE VARCHAR(2),
@@ -171,6 +179,7 @@ into table bridge_median
 fields terminated by ','  optionally enclosed by '"' escaped by '"'   
 lines terminated by '\r\n'; 
 
+drop table if exists structure_flared;
 create table structure_flared
 (
 	STRUCTURE_FLARED VARCHAR(2),
@@ -182,6 +191,7 @@ into table structure_flared
 fields terminated by ','  optionally enclosed by '"' escaped by '"'   
 lines terminated by '\r\n'; 
 
+drop table if exists structure_type;
 create table structure_type
 (
 	STRUCTURE_TYPE VARCHAR(2),
@@ -193,6 +203,7 @@ into table structure_type
 fields terminated by ','  optionally enclosed by '"' escaped by '"'   
 lines terminated by '\r\n'; 
 
+drop table if exists deck_structure_type;
 create table deck_structure_type
 (
 	DECK_STRUCTURE_TYPE VARCHAR(2),
@@ -204,6 +215,7 @@ into table deck_structure_type
 fields terminated by ','  optionally enclosed by '"' escaped by '"'   
 lines terminated by '\r\n'; 
 
+drop table if exists surface_type;
 create table surface_type
 (
 	SURFACE_TYPE VARCHAR(2),
@@ -215,6 +227,7 @@ into table surface_type
 fields terminated by ','  optionally enclosed by '"' escaped by '"'   
 lines terminated by '\r\n'; 
 
+drop table if exists membrane_type;
 create table membrane_type
 (
 	MEMBRANE_TYPE VARCHAR(2),
@@ -226,6 +239,7 @@ into table membrane_type
 fields terminated by ','  optionally enclosed by '"' escaped by '"'   
 lines terminated by '\r\n'; 
 
+drop table if exists deck_protection;
 create table deck_protection
 (
 	DECK_PROTECTION VARCHAR(2),
