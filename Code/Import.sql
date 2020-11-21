@@ -1,5 +1,6 @@
 -- construct the table of the raw data
-CREATE TABLE rawdata(
+drop table if exists rawdata;
+create table rawdata(
 STATE_CODE_001 varchar(50),
 STRUCTURE_NUMBER_008 varchar(50),
 RECORD_TYPE_005A varchar(50),
@@ -138,10 +139,13 @@ CAT10 varchar(50)
 );
 --
 
-SET GLOBAL max_allowed_packet=1024*1024*1024;
+set global max_allowed_packet = 1024*1024*1024;
 
-set global max_execution_time=0;
+set global max_execution_time = 0;
 
+set sql_safe_updates = 0;
+
+-- the original raw data is converted into utf-8 encoding
 load data infile 'D:/CUHK/Y3T1/ERG3010/ERG3010-Project/Data/rawdata-usbridges-csv-2016-utf8.csv'   
 into table rawdata
 fields terminated by ','  optionally enclosed by '"' escaped by '"'   
