@@ -101,7 +101,7 @@ create procedure pcc()
 			set upper = upper + (x1 - mean1) * (x2 - mean2);
             set lowerleft = lowerleft + pow((x1-mean1), 2);
             set lowerright = lowerright + pow((x2-mean2), 2);
-            set i = i + 1;
+            set i = i + 10000;
 		end while;
         set lowerleft = sqrt(lowerleft);
         set lowerright = sqrt(lowerright);
