@@ -27,9 +27,9 @@ from rawdata;
 alter table further_question_1
 add primary key (STATE_CODE_001, STRUCTURE_NUMBER_008, RECORD_TYPE_005A, MAINTENANCE_021);
 
-drop table if exists relation_1;
+drop table if exists correlation_1;
 
-create table relation_1 as
+create table correlation_1 as
 select DECK_COND_058, STRUCTURAL_EVAL_067, count(STRUCTURAL_EVAL_067)
 from further_question_1
 where (DECK_COND_058 regexp '[^0-9.]') = 0 and (STRUCTURAL_EVAL_067 regexp '[^0-9.]') = 0
@@ -37,8 +37,9 @@ group by DECK_COND_058, STRUCTURAL_EVAL_067
 having DECK_COND_058 >= 0 and STRUCTURAL_EVAL_067 >= 0
 order by DECK_COND_058;
 
-select * from relation_1;
+select * from correlation_1;
 
+-- fast pcc 1
 select 
 	(avg(DECK_COND_058 * STRUCTURAL_EVAL_067) 
     - avg(DECK_COND_058) * avg(STRUCTURAL_EVAL_067)) 
@@ -51,15 +52,15 @@ from further_question_1
 where (DECK_COND_058 regexp '[^0-9.]') = 0 
 and (STRUCTURAL_EVAL_067 regexp '[^0-9.]') = 0;
 
-
+-- fast pcc 2
 select  (count(*) * sum(DECK_COND_058 * STRUCTURAL_EVAL_067) - sum(DECK_COND_058) * sum(STRUCTURAL_EVAL_067)) / 
         (sqrt(count(*) * sum(DECK_COND_058 * DECK_COND_058) - sum(DECK_COND_058) * sum(DECK_COND_058)) * sqrt(count(*) * sum(STRUCTURAL_EVAL_067 * STRUCTURAL_EVAL_067) - sum(STRUCTURAL_EVAL_067) * sum(STRUCTURAL_EVAL_067))) 
 as pcc_058_067
 from further_question_1
 where (DECK_COND_058 regexp '[^0-9.]') = 0 and (STRUCTURAL_EVAL_067 regexp '[^0-9.]') = 0;
 
-select count(*) from tab into count;
 
+-- slow pcc
 DELIMITER //
 
 drop procedure if exists pcc;

@@ -1,10 +1,10 @@
 -- set primary keys
-alter table bridge_structure add primary key(STATE_CODE_001, STRUCTURE_NUMBER_008, RECORD_TYPE_005A, MAX_SPAN_LEN_MT_048, STRUCTURE_LEN_MT_049, BRIDGE_IMP_COST_094);
+alter table bridge_structure add primary key(STATE_CODE_001, STRUCTURE_NUMBER_008, RECORD_TYPE_005A, FED_AGENCY);
 alter table structure_kind add primary key(STRUCTURE_KIND);
 alter table structure_type add primary key(STRUCTURE_TYPE);
 alter table record_type add primary key(RECORD_TYPE);
 alter table condition_rating add primary key(RATING_CODE);
-alter table bridge_condtion add primary key(STATE_CODE_001, STRUCTURE_NUMBER_008, RECORD_TYPE_005A, BRIDGE_IMP_COST_094);
+alter table bridge_condtion add primary key(STATE_CODE_001, STRUCTURE_NUMBER_008, RECORD_TYPE_005A, FED_AGENCY);
 alter table deck_protection add primary key(DECK_PROTECTION);
 alter table membrane_type add primary key(MEMBRANE_TYPE);
 alter table structure_flared add primary key(STRUCTURE_FLARED);
@@ -13,6 +13,7 @@ alter table surface_type add primary key(SURFACE_TYPE);
 alter table bridge_median add primary key(MEDIAN_CODE);
 alter table culvert_rating add primary key(RATING_CODE);
 alter table channel_rating add primary key(RATING_CODE);
+alter table state_code add primary key(STATE_CODE);
 
 -- set foreign keys
 -- 1. modify the formats of some values

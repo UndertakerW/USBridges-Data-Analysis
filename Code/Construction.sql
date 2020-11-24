@@ -10,7 +10,8 @@ create table bridge_condtion
     SUBSTRUCTURE_COND_060 VARCHAR(50),
     CHANNEL_COND_061 VARCHAR(50),
     CULVERT_COND_062 VARCHAR(50),
-    BRIDGE_IMP_COST_094 VARCHAR(50)
+    BRIDGE_IMP_COST_094 VARCHAR(50),
+    FED_AGENCY VARCHAR(50)
 );
 
 insert into bridge_condtion
@@ -24,7 +25,8 @@ insert into bridge_condtion
     SUBSTRUCTURE_COND_060,
     CHANNEL_COND_061,
     CULVERT_COND_062,
-    BRIDGE_IMP_COST_094
+    BRIDGE_IMP_COST_094,
+    FED_AGENCY
     )
 select
     STATE_CODE_001,
@@ -36,7 +38,8 @@ select
     SUBSTRUCTURE_COND_060,
     CHANNEL_COND_061,
     CULVERT_COND_062,
-    BRIDGE_IMP_COST_094
+    BRIDGE_IMP_COST_094,
+    FED_AGENCY
 from rawdata;
 
 drop table if exists condition_rating;
@@ -108,7 +111,8 @@ create table bridge_structure
     DECK_STRUCTURE_TYPE_107 VARCHAR(50),
     SURFACE_TYPE_108A VARCHAR(50),
     MEMBRANE_TYPE_108B VARCHAR(50),
-    DECK_PROTECTION_108C VARCHAR(50)
+    DECK_PROTECTION_108C VARCHAR(50),
+    FED_AGENCY VARCHAR(50)
 );
 
 insert into bridge_structure
@@ -131,7 +135,8 @@ insert into bridge_structure
     DECK_STRUCTURE_TYPE_107,
     SURFACE_TYPE_108A,
     MEMBRANE_TYPE_108B,
-    DECK_PROTECTION_108C
+    DECK_PROTECTION_108C,
+    FED_AGENCY
     )
 select
 	STATE_CODE_001,
@@ -152,7 +157,8 @@ select
     DECK_STRUCTURE_TYPE_107,
     SURFACE_TYPE_108A,
     MEMBRANE_TYPE_108B,
-    DECK_PROTECTION_108C
+    DECK_PROTECTION_108C,
+    FED_AGENCY
 from rawdata;
 
 drop table if exists structure_kind;
@@ -248,5 +254,17 @@ create table deck_protection
 
 load data infile 'D:/CUHK/Y3T1/ERG3010/ERG3010-Project/Data/DeckProtection.csv'   
 into table deck_protection
+fields terminated by ','  optionally enclosed by '"' escaped by '"'   
+lines terminated by '\r\n'; 
+
+drop table if exists state_code;
+create table state_code
+(
+	STATE_CODE VARCHAR(5),
+    STATE_NAME VARCHAR(50)
+);
+
+load data infile 'D:/CUHK/Y3T1/ERG3010/ERG3010-Project/Data/StateCode.csv'   
+into table state_code
 fields terminated by ','  optionally enclosed by '"' escaped by '"'   
 lines terminated by '\r\n'; 
