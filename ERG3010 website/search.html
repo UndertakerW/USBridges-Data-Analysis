@@ -93,32 +93,32 @@
     <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-default">State Code </span>
     </div>
-    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+    <input id="input" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
     </div>
 
     <div class="input-group mb-3">
     <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-default">country-code </span>
     </div>
-    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+    <input id="input1" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
     </div>
     
     <div class="input-group mb-3">
-    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+    <input id="input2" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
     <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-default"> <= year <= </span>
     </div>
-    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+    <input id="input3" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
     </div>
     
     <div class="input-group">
-    <span class="input-group-text" id="inputGroup-sizing-default">highway distinct </span>
-    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Highway distinct" aria-describedby="basic-addon2">
+    <span class="input-group-text" id="inputGroup-sizing-default">highway district </span>
+    <input id="input4" type="text" class="form-control" placeholder="Recipient's username" aria-label="Highway district" aria-describedby="basic-addon2">
     <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button">=</button>
-        <button class="btn btn-outline-secondary" type="button">Start with</button>
-        <button class="btn btn-outline-secondary" type="button">Contains</button>
-        <button class="btn btn-outline-secondary" type="button">End with</button>
+        <button class="btn btn-outline-secondary" type="button" onclick="equal()">=</button>
+        <button class="btn btn-outline-secondary" type="button" onclick="start_with()">Start with</button>
+        <button class="btn btn-outline-secondary" type="button" onclick="contains()">Contains</button>
+        <button class="btn btn-outline-secondary" type="button" onclick="end_with()">End with</button>
         </div>
     </div>
 
@@ -126,12 +126,12 @@
 
     <div class="input-group">
     <span class="input-group-text" id="inputGroup-sizing-default">structure_number </span>
-    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Highway distinct" aria-describedby="basic-addon2">
+    <input id="input5" type="text" class="form-control" placeholder="Recipient's username" aria-label="Highway district" aria-describedby="basic-addon2">
     <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button">=</button>
-        <button class="btn btn-outline-secondary" type="button">Start with</button>
-        <button class="btn btn-outline-secondary" type="button">Contains</button>
-        <button class="btn btn-outline-secondary" type="button">End with</button>
+        <button class="btn btn-outline-secondary" type="button" onclick="equal1()">=</button>
+        <button class="btn btn-outline-secondary" type="button" onclick="start_with1()">Start with</button>
+        <button class="btn btn-outline-secondary" type="button" onclick="contains1()">Contains</button>
+        <button class="btn btn-outline-secondary" type="button" onclick="end_with1()">End with</button>
         </div>
     </div>
     <br>
