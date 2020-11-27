@@ -138,48 +138,48 @@ select * from structure_kind_count_by_decade;
 
 create index structure_type_index on rawdata (STRUCTURE_TYPE_043B);
 
-create table structure_kind_by_year as (
-select YEAR_BUILT_027 YEAR_BUILT, STRUCTURE_KIND_043A STRUCTURE_KIND
+create table structure_type_by_year as (
+select YEAR_BUILT_027 YEAR_BUILT, STRUCTURE_TYPE_043B STRUCTURE_TYPE
 from rawdata );
 
-create table structure_kind_count_by_year as (
-select YEAR_BUILT, STRUCTURE_KIND, count(*) BRIDGES_BUILT
-from structure_kind_by_year
-group by YEAR_BUILT, STRUCTURE_KIND
-having YEAR_BUILT >= 1900 and STRUCTURE_KIND != ''
-order by YEAR_BUILT, STRUCTURE_KIND );
+create table structure_type_count_by_year as (
+select YEAR_BUILT, STRUCTURE_TYPE, count(*) BRIDGES_BUILT
+from structure_type_by_year
+group by YEAR_BUILT, STRUCTURE_TYPE
+having YEAR_BUILT >= 1900 and STRUCTURE_TYPE != ''
+order by YEAR_BUILT, STRUCTURE_TYPE );
 
-alter table structure_kind_count_by_year
+alter table structure_type_count_by_year
 add column RATIO FLOAT;
 
-update structure_kind_count_by_year
+update structure_type_count_by_year
 set RATIO = BRIDGES_BUILT / 
 (select BRIDGES_BUILT 
 from bridges_built_by_year 
-where bridges_built_by_year.YEAR_BUILT = structure_kind_count_by_year.YEAR_BUILT);
+where bridges_built_by_year.YEAR_BUILT = structure_type_count_by_year.YEAR_BUILT);
 
-select * from structure_kind_count_by_year;
+select * from structure_type_count_by_year;
 
 create table temp as (
-select * from structure_kind_count_by_year );
+select * from structure_type_count_by_year );
 
 update temp
 set YEAR_BUILT = floor(YEAR_BUILT / 10) * 10;
 
-create table structure_kind_count_by_decade as (
-select YEAR_BUILT DECADE_BUILT, STRUCTURE_KIND, sum(BRIDGES_BUILT) BRIDGES_BUILT from temp
-group by DECADE_BUILT, STRUCTURE_KIND
-order by DECADE_BUILT, STRUCTURE_KIND );
+create table structure_type_count_by_decade as (
+select YEAR_BUILT DECADE_BUILT, STRUCTURE_TYPE, sum(BRIDGES_BUILT) BRIDGES_BUILT from temp
+group by DECADE_BUILT, STRUCTURE_TYPE
+order by DECADE_BUILT, STRUCTURE_TYPE );
 
 drop table if exists temp;
 
-alter table structure_kind_count_by_decade
+alter table structure_type_count_by_decade
 add column RATIO FLOAT;
 
-update structure_kind_count_by_decade
+update structure_type_count_by_decade
 set RATIO = BRIDGES_BUILT / 
 (select BRIDGES_BUILT 
 from bridges_built_by_decade 
-where bridges_built_by_decade.DECADE_BUILT = structure_kind_count_by_decade.DECADE_BUILT);
+where bridges_built_by_decade.DECADE_BUILT = structure_type_count_by_decade.DECADE_BUILT);
 
-select * from structure_kind_count_by_decade;
+select * from structure_type_count_by_decade;
