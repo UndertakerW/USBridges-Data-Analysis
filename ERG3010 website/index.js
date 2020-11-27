@@ -1,30 +1,19 @@
 //var con = new XMLHttpRequest("ADODB.Connection")
 //var rs = new XMLHttpRequest("ADODB.Recordset")
+var mysql= require('mysql');
+var connection = mysql.createConnection({host :'localhost',user : 'root',password:'1020zxc..',database:'erg3010'})
+var command;
+connection.connect();
+
 function here(){
   console.log("function here");
-  var con = new ActiveXObject("ADODB.Connection");
-  var rs = new ActiveXObject("ADODB.Recordset");
-  try{
-    con.ConnectionString = "DSN=ERG3010;SERVER=localhost;User ID=root;Password=1020zxc..;Database=erg3010;Port=3307;"//"DRIVER={MySQL ODBC 8.0 Unicode Driver};OPTION=3;SERVER=localhost;User ID=root;Password=1020zxc..;Database=erg3010;Port=3307";  
-    con.open;
-    var sql = " select count(*) from design_load where YEAR_BUILT_027>2014; ";
-    rs.open(sql, con);
-    while (!rs.eof) {
-      echo(rs.fields("YEAR_BUILT_027"+"\t"));
-      rs.moveNext;
-    }
+    connection.query(command,function(error,results,fields){
+      if(error) throw error;
+      console.log('The solution is : ',results);
+    });
   }
-  catch(e){
-    //异常报告
-    echo("error");
-    document.write(e.message);
-    } finally{
-    }
-};
 
 /*
-
-  
   while (!rs.eof) {
     echo(rs.fields("YEAR_BUILT_027"+"\t"));
     rs.moveNext;

@@ -1,26 +1,38 @@
-from flask import Flask, Response, request, jsonify
-from os import path
-app = Flask(__name__, static_url_path = "", static_folder = "")
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 # No cache, so the website is updated in every refresh.
+from flask import Flask, render_template, request
+import pymysql
 
-fake = [
-    [1, 2, 3, 4, 5, 6],
-    [15, 20, 3, 40, 5, 60],
-    [20, 23, 10, 49, 23, 1],
-    [100, 2, 30, 23, 54, 64],
-    [72, 64, 36, 20, 92, 9], 
-]
-
-@app.route('/')
-def index():
-    return app.send_static_file("index.html")
-
-@app.route('/fake_data/<int:id>')
-def fake_data(id):
-    id = max(0, id)
-    id = min(4, id)
-    return jsonify(fake[id])
+app = Flask(__name__)
 
 
-if __name__ == '__main__':
-    app.run(threaded = True, debug = True)
+def get_mysql_cursor():
+    conn = pymysql.connect('localhost', user="root", passwd="1020zxc..", db="reconstruct_2", port=3306)
+    cursor = conn.cursor()
+    return conn, cursor
+
+
+@app.route('/', methods=['GET'])
+def index():
+    test_data = []
+    return render_template('index.html', test_data=test_data)
+
+
+@app.route('/search', methods=['POST'])
+def search_data():
+    conn, cursor = get_mysql_cursor()
+    keyword = request.form.get("search")
+    if keyword:
+        select_sql_str = "select STATE_CODE_001, HIGHWAY_DISTRICT_002, COUNTY_CODE_003, STRUCTURE_NUMBER_008, YEAR_BUILT_027 from rawdata where STATE_CODE_001 = \'" + keyword + "\' limit 0, 20"
+        print(select_sql_str)
+        cursor.execute(select_sql_str)
+        data = cursor.fetchall()
+        if data:
+            data = list(data)
+            test_data = [list(item) for item in data]
+        else:
+            test_data = []
+        return render_template('index.html', test_data=test_data)
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5546)
