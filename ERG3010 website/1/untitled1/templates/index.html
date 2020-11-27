@@ -92,13 +92,13 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-default">State Code </span>
             </div>
-                <input id="input" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="search">
+                <input id="input" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="statecode">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-default">country-code </span>
                 </div>
-                <input id="input1" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="country">
+                <input id="input1" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="countrycode">
             </div>
             <div class="input-group mb-3">
                 <input id="input2" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="year1">
@@ -113,13 +113,15 @@
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="button" onclick="equal()">=</button>
                     <button class="btn btn-outline-secondary" type="button" onclick="start_with()">Start with</button>
-                    <button class="btn btn-outline-secondary" type="button" onclick="contains()">Contains</button>
+                    <button class="btn btn-outline-secondary" type="button" onclick="contains2()">Contains</button>
                     <button class="btn btn-outline-secondary" type="button" onclick="end_with()">End with</button>
                 </div>
             </div>  
             <div class="input-group">
                 <span class="input-group-text" id="inputGroup-sizing-default">structure_number </span>
-                <input id="input5" type="text" class="form-control" placeholder="Recipient's username" aria-label="Highway district" aria-describedby="basic-addon2" name="number">
+                <input id="input5" type="text" class="form-control" placeholder="Recipient's username" aria-label="Highway district" aria-describedby="basic-addon2" name="struct">
+                <input type="hidden" id="option_1" name="option_1" value=0>
+                <input type="hidden" id="option_2" name="option_2" value=0>
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="button" onclick="equal1()">=</button>
                     <button class="btn btn-outline-secondary" type="button" onclick="start_with1()">Start with</button>
@@ -127,12 +129,48 @@
                     <button class="btn btn-outline-secondary" type="button" onclick="end_with1()">End with</button>
                     </div>
             </div>
+            <script>
+                function equal(){
+                    document.getElementById("option_1").value = 0;
+                    console.log(document.getElementById("option_1").value);
+                };
+                function start_with(){
+                    document.getElementById("option_1").value = 1;
+                    console.log(document.getElementById("option_1").value);
+                };
+                function contains2(){
+                    document.getElementById("option_1").value = 2;
+                    console.log(document.getElementById("option_1").value);
+                };
+                function end_with(){
+                    document.getElementById("option_1").value = 3;
+                    console.log(document.getElementById("option_1").value);
+                };
 
-            <input type="submit" value="搜索" />
+                function equal1(){
+                    document.getElementById("option_2").value = 0;
+                    console.log(document.getElementById("option_2").value);
+                };
+                function start_with1(){
+                    document.getElementById("option_2").value = 1;
+                    console.log(document.getElementById("option_2").value);
+                };
+                function contains1(){
+                    document.getElementById("option_2").value = 2;
+                    console.log(document.getElementById("option_2").value);
+                };
+                function end_with1(){
+                    document.getElementById("option_2").value = 3;
+                    console.log(document.getElementById("option_2").value);
+                };
+
+
+            </script>
+            <input type="submit" value="search!" />
         </form>
     </div>
     {% if test_data|length > 0 %}
-            搜索结果:<br><br>
+            Result:<br><br>
             {% for item in test_data %}
                 name: {{ item[0] }}, description: {{ item[1] }} <br>
             {% endfor %}
