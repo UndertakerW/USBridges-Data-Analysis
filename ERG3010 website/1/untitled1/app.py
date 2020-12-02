@@ -5,20 +5,23 @@ app = Flask(__name__)
 
 
 def get_mysql_cursor():
-    conn = pymysql.connect('localhost', user="root", passwd="MaoYu", db="reconstruct_2", port=3306)
+    conn = pymysql.connect('localhost', user="root", passwd="1020zxc..", db="erg3010", port=3306)
     cursor = conn.cursor()
     return conn, cursor
 
-
-@app.route('/', methods=['GET'])
-def index():
-    test_data = []
-    return render_template('index.html', test_data=test_data)
-
-@app.route('/home',methods=['GET', 'POST'])
+@app.route('/',methods=['GET', 'POST'])
 def home():
     return render_template('home.html')
 
+@app.route('/view/',methods=['GET'])
+def view():
+    return render_template('view.html')
+
+
+@app.route('/index', methods=['GET'])
+def index():
+    test_data = []
+    return render_template('index.html', test_data=test_data)
     
 @app.route('/search', methods=['POST'])
 def search_data():

@@ -27,7 +27,7 @@
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Our intersting findings</a>
+                <a class="nav-link" href="{{ url_for('view') }}">Our intersting findings</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('index') }}">database search</a>
@@ -38,7 +38,6 @@
 
     <img src="static\b_1.jpeg" width="100%" height="100%"/>
     
-    <img src="static\b_3.jpg" width="100%" height="100%"/>
     <div style="position: fixed; right: 730px; bottom: 350px; " >
         <h1  {
         margin: auto;
@@ -48,10 +47,10 @@
             }> ERG3010 PROJECT DEMO  </P>
     </div>
     <div style="position: fixed; right: 770px; bottom: 150px;  " >
-        <button type="button"  class="btn btn-lg btn-outline-dark">View</button>
+        <a  href="{{ url_for('view') }}"type="button"  class="btn btn-lg btn-outline-dark">View</a>
     </div>
     <div style="position: fixed; right: 400px; bottom: 150px; width:300px" >
-             <a href="index.html" type="button" class="btn btn-lg btn-outline-dark" role="button">Search Database</a>
+             <a href="{{ url_for('index') }}" type="button" class="btn btn-lg btn-outline-dark" role="button">Search Database</a>
     </div>
 
 </body>
