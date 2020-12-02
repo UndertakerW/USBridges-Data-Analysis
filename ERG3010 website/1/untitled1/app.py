@@ -32,6 +32,34 @@ def search_data():
     ]
 
     query = 'select STATE_CODE_001, HIGHWAY_DISTRICT_002, COUNTY_CODE_003, STRUCTURE_NUMBER_008, YEAR_BUILT_027 from rawdata '
+
+
+    query_conditions = ['STATE_CODE_001 = ', 'COUNTY_CODE_003 = ', 'YEAR_BUILT_027 >= ', 'YEAR_BUILT_027 <= ', 
+                            'HIGHWAY_DISTRICT_002 ', 'STRUCTURE_NUMBER_008 ']
+
+    has_constain = False
+
+    for i in range(6):
+        if(info_list[i] and info_list[i].isspace() == False and info_list[i] != ''):
+            if(has_constain == False):
+                query += ' where '
+                has_constain = True
+            else:
+                query += ' and '
+            
+            if(i <= 3):
+                query += (query_conditions[i] + '\'' + info_list[i] + '\'')
+            else:
+                query += query_conditions[i]
+                if(info_list[i+2] == "0"):
+                    query += ('= \'' + info_list[i] + '\'')
+                elif(info_list[i+2] == "1"):
+                    query += ('like \'%' + info_list[i] + '\'')
+                elif(info_list[i+2] == "2"):
+                    query += ('like \'%' + info_list[i] + '%\'')
+                else:
+                    query += ('like \'' + info_list[i] + '%\'')
+
     print(query)
     print(info_list[6])
     print(info_list[7])            
