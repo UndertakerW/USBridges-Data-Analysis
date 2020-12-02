@@ -268,3 +268,10 @@ load data infile 'D:/CUHK/Y3T1/ERG3010/ERG3010-Project/Data/StateCode.csv'
 into table state_code
 fields terminated by ','  optionally enclosed by '"' escaped by '"'   
 lines terminated by '\r\n'; 
+
+-- set up indexes
+create index rawdata_state_code_index on rawdata(STATE_CODE_001);
+create index rawdata_highway_district_index on rawdata(HIGHWAY_DISTRICT_002);
+create index rawdata_county_code_index on rawdata(COUNTY_CODE_003);
+create index rawdata_structure_number_index on rawdata(STRUCTURE_NUMBER_008);
+create index rawdata_year_build_index on rawdata(YEAR_BUILT_027);
