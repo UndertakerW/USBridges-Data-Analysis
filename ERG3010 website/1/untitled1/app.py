@@ -22,6 +22,10 @@ def view():
 def index():
     test_data = []
     return render_template('index.html', test_data=test_data)
+
+@app.route('/info/',methods=['GET'])
+def info():
+    return render_template('info.html')
     
 @app.route('/search', methods=['POST'])
 def search_data():
