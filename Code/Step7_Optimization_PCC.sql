@@ -55,32 +55,21 @@ create procedure pcc()
         declare upper, lowerleft, lowerright float;
         declare x1, x2 float;
         declare r float;
-        select count(*) 
-        from pcc_test 
-        into count;
-        select avg(DECK_COND_058) 
-        from pcc_test 
-        into mean1;
-        select avg(STRUCTURAL_EVAL_067) 
-        from pcc_test
-        into mean2;
+        select count(*) from pcc_test into count;
+        select avg(DECK_COND_058) from pcc_test into mean1;
+        select avg(STRUCTURAL_EVAL_067) from pcc_test into mean2;
         set i = 0;
         set upper = 0;
         set lowerleft = 0;
         set lowerright = 0;
-        while i < 10
+        while i < count/100
         do
-			select DECK_COND_058 
-            from pcc_test
-            limit i,1 into x1;
-            select STRUCTURAL_EVAL_067
-            from pcc_test
-            limit i,1 
-            into x2;
+			select DECK_COND_058 from pcc_test limit i,1 into x1;
+            select STRUCTURAL_EVAL_067 from pcc_test limit i,1 into x2;
 			set upper = upper + (x1 - mean1) * (x2 - mean2);
             set lowerleft = lowerleft + pow((x1-mean1), 2);
             set lowerright = lowerright + pow((x2-mean2), 2);
-            set i = i;
+            set i = i + 1;
 		end while;
         set lowerleft = sqrt(lowerleft);
         set lowerright = sqrt(lowerright);
