@@ -202,16 +202,20 @@
                 搜索结果:<br><br>
                 <table class="imagetable" >
                 <tr> 
-                    <td>State_code</td>
-                    <td>country_code </td>
-                    <td>year</td>
+                    <td>STATE_CODE</td>
+                    <td>HIGHWAY_DISTRICT </td>
+                    <td>Country_Code </td>
+                    <td>STRUCTURE_NUMBER </td>
+                    <td>YEAR_BUILT</td>
                 </tr>
                 
                 {% for item in test_data %}
                     <tr> 
-                        <td>State_code: {{ item[0] }} </td>
-                        <td>country_code: {{ item[1] }} </td>
-                        <td>year: {{ item[2] }} </td>
+                        <td> {{ item[0] }} </td>
+                        <td> {{ item[1] }} </td>
+                        <td>{{ item[2] }} </td>
+                        <td>{{ item[3] }} </td>
+                        <td>{{ item[4] }} </td>
                     </tr>
                 {% endfor %}
                 </table>
