@@ -27,9 +27,10 @@ from rawdata;
 alter table pcc_test
 add primary key (STATE_CODE_001, STRUCTURE_NUMBER_008, RECORD_TYPE_005A, MAINTENANCE_021);
 
-drop table if exists correlation_1;
-
-
+delete 
+from pcc_test
+where (DECK_COND_058 regexp '[^0-9.]') != 0 
+or (STRUCTURAL_EVAL_067 regexp '[^0-9.]') != 0;
 
 -- fast pcc
 select 
@@ -40,9 +41,7 @@ select
     * sqrt(avg(STRUCTURAL_EVAL_067 * STRUCTURAL_EVAL_067) 
     - avg(STRUCTURAL_EVAL_067) * avg(STRUCTURAL_EVAL_067))) 
 as pcc_058_067
-from pcc_test
-where (DECK_COND_058 regexp '[^0-9.]') = 0 
-and (STRUCTURAL_EVAL_067 regexp '[^0-9.]') = 0;
+from pcc_test;
 
 -- slow pcc
 DELIMITER //
@@ -58,35 +57,30 @@ create procedure pcc()
         declare r float;
         select count(*) 
         from pcc_test 
-        where (DECK_COND_058 regexp '[^0-9.]') = 0 and (STRUCTURAL_EVAL_067 regexp '[^0-9.]') = 0
         into count;
         select avg(DECK_COND_058) 
         from pcc_test 
-        where (DECK_COND_058 regexp '[^0-9.]') = 0 and (STRUCTURAL_EVAL_067 regexp '[^0-9.]') = 0
         into mean1;
         select avg(STRUCTURAL_EVAL_067) 
         from pcc_test
-        where (DECK_COND_058 regexp '[^0-9.]') = 0 and (STRUCTURAL_EVAL_067 regexp '[^0-9.]') = 0
         into mean2;
         set i = 0;
         set upper = 0;
         set lowerleft = 0;
         set lowerright = 0;
-        while i < count
+        while i < 10
         do
 			select DECK_COND_058 
             from pcc_test
-            where (DECK_COND_058 regexp '[^0-9.]') = 0 and (STRUCTURAL_EVAL_067 regexp '[^0-9.]') = 0
             limit i,1 into x1;
             select STRUCTURAL_EVAL_067
             from pcc_test
-            where (DECK_COND_058 regexp '[^0-9.]') = 0 and (STRUCTURAL_EVAL_067 regexp '[^0-9.]') = 0
             limit i,1 
             into x2;
 			set upper = upper + (x1 - mean1) * (x2 - mean2);
             set lowerleft = lowerleft + pow((x1-mean1), 2);
             set lowerright = lowerright + pow((x2-mean2), 2);
-            set i = i + 10000;
+            set i = i;
 		end while;
         set lowerleft = sqrt(lowerleft);
         set lowerright = sqrt(lowerright);
