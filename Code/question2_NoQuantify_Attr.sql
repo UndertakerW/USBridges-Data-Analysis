@@ -1,0 +1,52 @@
+ DROP TABLE find_cost;
+
+create table find_cost as 
+select distinct STRUCTURE_KIND_043A,STRUCTURE_TYPE_043B, APPR_KIND_044A, APPR_TYPE_044B, DECK_COND_058,SUPERSTRUCTURE_COND_059,
+SUBSTRUCTURE_COND_060,CHANNEL_COND_061,WORK_PROPOSED_075A,WORK_DONE_BY_075B,BRIDGE_IMP_COST_094
+from erg3010.rawdata;
+
+alter table find_cost;
+
+
+select STRUCTURE_KIND_043A,avg(BRIDGE_IMP_COST_094) from find_cost
+group by STRUCTURE_KIND_043A
+order by STRUCTURE_KIND_043A;
+
+select STRUCTURE_TYPE_043B,avg(BRIDGE_IMP_COST_094) from find_cost
+group by STRUCTURE_TYPE_043B
+order by STRUCTURE_TYPE_043B;
+
+select APPR_KIND_044A,avg(BRIDGE_IMP_COST_094) from find_cost
+group by APPR_KIND_044A
+order by APPR_KIND_044A;
+
+select APPR_TYPE_044B,avg(BRIDGE_IMP_COST_094) from find_cost
+group by APPR_TYPE_044B
+order by APPR_TYPE_044B;
+
+
+select DECK_COND_058,avg(BRIDGE_IMP_COST_094) from find_cost
+group by DECK_COND_058
+order by DECK_COND_058;
+
+
+select SUPERSTRUCTURE_COND_059,avg(BRIDGE_IMP_COST_094) from find_cost
+group by SUPERSTRUCTURE_COND_059
+order by SUPERSTRUCTURE_COND_059;
+
+select SUBSTRUCTURE_COND_060,avg(BRIDGE_IMP_COST_094) from find_cost
+group by SUBSTRUCTURE_COND_060
+order by SUBSTRUCTURE_COND_060;
+
+select CHANNEL_COND_061,avg(BRIDGE_IMP_COST_094) from find_cost
+group by CHANNEL_COND_061
+order by CHANNEL_COND_061;
+
+select WORK_PROPOSED_075A,avg(BRIDGE_IMP_COST_094) from find_cost
+group by WORK_PROPOSED_075A
+order by WORK_PROPOSED_075A;
+
+select WORK_DONE_BY_075B,avg(BRIDGE_IMP_COST_094) from find_cost
+where WORK_DONE_BY_075B !=''
+group by WORK_DONE_BY_075B
+order by WORK_DONE_BY_075B;
