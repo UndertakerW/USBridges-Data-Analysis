@@ -1,4 +1,4 @@
-drop table if exists bridge_condition;
+drop table if exists bridge_condtion;
 create table bridge_condtion
 (
     STATE_CODE_001 VARCHAR(50),
@@ -173,7 +173,7 @@ into table structure_kind
 fields terminated by ','  optionally enclosed by '"' escaped by '"'   
 lines terminated by '\r\n'; 
 
-drop table if exists bridge_madian;
+drop table if exists bridge_median;
 create table bridge_median
 (
 	MEDIAN_CODE VARCHAR(2),

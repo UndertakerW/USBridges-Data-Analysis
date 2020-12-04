@@ -5,7 +5,8 @@ app = Flask(__name__)
 
 
 def get_mysql_cursor():
-    conn = pymysql.connect('localhost', user="root", passwd="1020zxc..", db="erg3010", port=3306)
+    # conn = pymysql.connect('localhost', user="root", passwd="1020zxc..", db="erg3010", port=3306)
+    conn = pymysql.connect('localhost', user="root", passwd="MaoYu", db="reconstruct_2", port=3306)
     cursor = conn.cursor()
     return conn, cursor
 
@@ -35,7 +36,7 @@ def search_data():
                 request.form.get("option_1"), request.form.get("option_2")
     ]
 
-    query = 'select STATE_CODE_001, HIGHWAY_DISTRICT_002, COUNTY_CODE_003, STRUCTURE_NUMBER_008, YEAR_BUILT_027 from rawdata '
+    query = 'select STATE_CODE_001, HIGHWAY_DISTRICT_002, COUNTY_CODE_003, STRUCTURE_NUMBER_008, YEAR_BUILT_027, STRUCTURE_KIND_DESCRIPTION, STRUCTURE_TYPE_DESCRIPTION from website_database '
 
 
     query_conditions = ['STATE_CODE_001 = ', 'COUNTY_CODE_003 = ', 'YEAR_BUILT_027 >= ', 'YEAR_BUILT_027 <= ', 
@@ -63,10 +64,7 @@ def search_data():
                     query += ('like \'%' + info_list[i] + '%\'')
                 else:
                     query += ('like \'' + info_list[i] + '%\'')
-
-    print(query)
-    print(info_list[6])
-    print(info_list[7])            
+      
 
     cursor.execute(query)
     data = cursor.fetchall()
