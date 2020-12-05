@@ -207,6 +207,8 @@
                     <td>Country_Code </td>
                     <td>STRUCTURE_NUMBER </td>
                     <td>YEAR_BUILT</td>
+                    <td>STRUCTURE_KIND</td>
+                    <td>STRUCTURE_TYPE</td>
                 </tr>
                 
                 {% for item in test_data %}
@@ -216,6 +218,8 @@
                         <td>{{ item[2] }} </td>
                         <td>{{ item[3] }} </td>
                         <td>{{ item[4] }} </td>
+                        <td>{{ item[5] }} </td>
+                        <td>{{ item[6] }} </td>
                     </tr>
                 {% endfor %}
                 </table>
