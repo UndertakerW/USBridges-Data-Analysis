@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>Findings</title>
+</head>
+<body>
+
+<nav height="80px" class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark" >
+        
+        <a class="navbar-brand" href="#"> <img src="../static/logo.jfif" width="30" height="30" class="d-inline-block align-top" alt="">  ERG3010 project </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ url_for('home') }}" >Home </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Our intersting findings<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ url_for('index') }}">database search</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('info') }}">student_infomation</a>
+            </li>
+            </ul>
+        </div>
+    </nav> 
+    <h3>question1</h3>
+    <img src="../static/question1.gif" width="50%" height="50%"/>
+    <h3>question2</h3>
+    <img src="../static/q1.gif" width="50%" height="50%"/>
+    <h3>question3</h3>
+    <img src="../static/图表 1.png" width="50%" height="50%"/>
+    <img src="../static/图表 1_2.png" width="50%" height="50%"/>
+    <img src="../static/图表 1_3.png" width="50%" height="50%"/>
+    <img src="../static/图表 1_4.png" width="50%" height="50%"/>
+</body>
+</html>
