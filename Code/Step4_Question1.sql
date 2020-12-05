@@ -11,9 +11,3 @@ from bridge_count a inner join
 on a.count_state = b.count_state and a.count = b.count order by a.count_state;
 
 
-
-
-select test.STATE_CODE_001,test.Structure_number_008
-from test right outer join test2
-on test.state_code_001 = test2.STATE_CODE_001
-where test.state_code_001 is null;
