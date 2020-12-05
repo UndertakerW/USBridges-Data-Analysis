@@ -5,8 +5,8 @@ app = Flask(__name__)
 
 
 def get_mysql_cursor():
-    # conn = pymysql.connect('localhost', user="root", passwd="1020zxc..", db="erg3010", port=3306)
-    conn = pymysql.connect('localhost', user="root", passwd="MaoYu", db="reconstruct_2", port=3306)
+    conn = pymysql.connect('localhost', user="root", passwd="1020zxc..", db="erg3010", port=3306)
+    #conn = pymysql.connect('localhost', user="root", passwd="MaoYu", db="reconstruct_2", port=3306)
     cursor = conn.cursor()
     return conn, cursor
 
