@@ -1,15 +1,19 @@
 drop table if exists bridge_count;
 create table bridge_count as
-select STATE_CODE_001,Structure_number_008,record_type_005A,year_built_027
+SELECT STATE_CODE_001 as count_state, year_built_027 as count_year,count(*) as count
 from rawdata
-group by state_code_001,STRUCTURE_NUMBER_008
-having count(RECORD_TYPE_005A)=1;
+group by year_built_027,state_code_001
+having YEAR_BUILT_027!='';
 
-drop table if exists bridge_count1;
-create table bridge_count1 as
-SELECT STATE_CODE_001 as count_state, year_built_027 as count_year,count(STATE_CODE_001) as count
-from bridge_count
-group by year_built_027,state_code_001;
+select a.* 
+from bridge_count a inner join 
+(select count_state,max(count) count from bridge_count group by count_state)b 
+on a.count_state = b.count_state and a.count = b.count order by a.count_state;
 
-select count_state,count_year,max(count) from bridge_count1
-group by count_state ;
+
+
+
+select test.STATE_CODE_001,test.Structure_number_008
+from test right outer join test2
+on test.state_code_001 = test2.STATE_CODE_001
+where test.state_code_001 is null;
